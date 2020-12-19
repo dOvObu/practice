@@ -65,7 +65,19 @@ struct Graph {
 		std::vector<Node*> Q;
 		Q.push_back(from);
 
-		for (auto node : nodes_pool) node->path = node->dead = false, node->C = node == from ? (a_star ? distance({ from->x, from->y }, {to->x, to->y}) : 0.f) : -1.f, node->from = nullptr;
+		for (auto node : nodes_pool)
+		{
+			node->path = node->dead = false;
+			if (node == from)
+			{
+				node->C = a_star ? distance({ from->x, from->y }, {to->x, to->y}) : 0.f
+			}
+			else
+			{
+				node->C = -1.f;
+			}
+			node->from = nullptr;
+		}
 
 		while (!Q.empty())
 		{
@@ -86,7 +98,12 @@ struct Graph {
 
 				if (!neighbor->dead)
 				{
-					float cost_to_come = neighbor->C + edge->length() + (a_star ? distance({neighbor->x, neighbor->y}, {to->x, to->y}) : 0.f);
+					float cost_to_come = neighbor->C + edge->length();
+					
+					if (a_star)
+					{
+						cost_to_come += distance({neighbor->x, neighbor->y}, {to->x, to->y});
+					}
 
 					if (neighbor->C < 0.f || cost_to_come < neighbor->C)
 					{
