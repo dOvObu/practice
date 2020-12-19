@@ -163,7 +163,22 @@ struct Graph {
 			{
 				vtxs[0].position.x = edge->node1->x, vtxs[0].position.y = edge->node1->y;
 				vtxs[1].position.x = edge->node2->x, vtxs[1].position.y = edge->node2->y;
-				vtxs[1].color = vtxs[0].color = edge->node1->path && edge->node2->path ? sf::Color(250, 150, 0) : (edge->node1->dead || edge->node2->dead) ? sf::Color{0,255,255, 200} : sf::Color{ 100,100,100,100 };
+				sf::Color color;
+				
+				if (edge->node1->path && edge->node2->path)
+				{
+					color = sf::Color{250, 150, 0};
+				}
+				else if (edge->node1->dead || edge->node2->dead)
+				{
+					color = sf::Color{0,255,255, 200}
+				}
+				else
+				{
+					color = sf::Color{ 100,100,100,100 };
+				}
+				
+				vtxs[1].color = vtxs[0].color =  color;
 				canvas.draw(vtxs);
 			}
 		}
