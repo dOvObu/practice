@@ -1,26 +1,10 @@
 #ifndef INCLUDED_SLIDER_H
 #define INCLUDED_SLIDER_H
 
-#include "Selector.h"
+#include "Utils.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-enum class UiDir {
-	Vertical,
-	Horisontal,
-
-	Top,
-	Left,
-	Right,
-	Bottom,
-	Middle,
-	TopLeft,
-	TopRight,
-	BottomLeft,
-	BottomRight,
-
-	None,
-};
 
 class Slider : public sf::Drawable {
 public:
