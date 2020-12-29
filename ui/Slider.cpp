@@ -1,4 +1,6 @@
 #include "Slider.h"
+#include "Selector.h"
+
 
 sf::Vector2f Slider::start_position;
 std::vector<Slider*> Slider::sliders;
