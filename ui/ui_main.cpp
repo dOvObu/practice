@@ -1,6 +1,21 @@
 #include "ScalableRect.h"
 #include "Slider.h"
-#include <iostream>
+
+class NineSlice {
+public:
+	NineSlice(float x, float y, float w, float h, float left_slider, float right_slider, float top_slider, float bottom_slider)
+		:_left_slider (left_slider),_right_slider(right_slider),_top_slider(top_slider),_bottom_slider(bottom_slider)
+	{
+		rt.setPosition(x, y);
+		rt.setSize({ w,h });
+	}
+private:
+	sf::RectangleShape rt;
+	float _left_slider;
+	float _right_slider;
+	float _top_slider;
+	float _bottom_slider;
+};
 
 
 int main()
